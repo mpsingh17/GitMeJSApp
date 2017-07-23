@@ -60,6 +60,10 @@ $(document).ready(function() {
         });
     };
 
+    var errorCallback = function(userName) {
+        $('#profile').html(`Can't find user ${userName}`);    
+    };
+
     var onSearchUser = function(e) {
         //console.log(e.target.value);
         let userName = e.target.value;
@@ -72,7 +76,9 @@ $(document).ready(function() {
                 client_id: clientId,
                 client_secret: clientSecret,
             }
-        }).done(renderUserProfile);
+        })
+        .done(renderUserProfile)
+        .fail(() => errorCallback(userName));
 
         //make req for repos of a user.
         $.ajax({

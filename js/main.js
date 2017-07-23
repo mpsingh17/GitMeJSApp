@@ -64,7 +64,13 @@ $(document).ready(function() {
 
     var errorCallback = function(userName) {
         $('.loader').hide();
-        $('#profile').html(`Can't find user ${userName}`);    
+        
+        if (userName.trim().length) {
+            $('#profile').html(`Can't find user ${userName}`);
+        }
+        else{
+            $('#profile').empty();
+        }
     };
 
     var onSearchUser = function(e) {

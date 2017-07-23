@@ -35,6 +35,8 @@ $(document).ready(function() {
             <h3 class="page-header">Latest Repos</h3>
             <div id="repos"></div>
         `);
+
+        $('.loader').hide();
     };
 
     var renderRepoList = function(repos) {
@@ -61,6 +63,7 @@ $(document).ready(function() {
     };
 
     var errorCallback = function(userName) {
+        $('.loader').hide();
         $('#profile').html(`Can't find user ${userName}`);    
     };
 
@@ -68,6 +71,8 @@ $(document).ready(function() {
         //console.log(e.target.value);
         let userName = e.target.value;
         let baseUrl = `https://api.github.com/users/${userName}`;
+        
+        $('.loader').show();
 
         //make a ajax request to github api.
         $.ajax({

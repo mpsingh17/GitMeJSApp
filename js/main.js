@@ -97,5 +97,5 @@ $(document).ready(function() {
         }).done(renderRepoList);
     };
 
-    $("#searchUser").on('keyup', onSearchUser);
+    $("#searchUser").on('keyup', $.debounce(300, onSearchUser));
 });
